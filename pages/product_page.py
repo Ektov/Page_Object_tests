@@ -8,9 +8,9 @@ class ProductPage(BasePage):
     def item_in_basket_is_correct(self):
         item_name = self.browser.find_element(*ProductPageLocation.ITEM_NAME).text
         mess_item_name = self.browser.find_element(*ProductPageLocation.MESSAGE_ITEM_NAME).text
-        assert item_name == mess_item_name
+        assert item_name == mess_item_name, "Item name in basket is not equal item name on product page"
         
     def price_in_basket_is_correct(self):
         item_price = self.browser.find_element(*ProductPageLocation.ITEM_PRICE).text
         mess_item_price = self.browser.find_element(*ProductPageLocation.MESSAGE_ITEM_PRICE).text
-        assert item_price == mess_item_price
+        assert item_price == mess_item_price "Item price in basket is not equal item price on product page"
