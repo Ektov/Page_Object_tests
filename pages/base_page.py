@@ -1,7 +1,7 @@
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from selenium.common.exceptions import NoAlertPresentException
-
+import math
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
