@@ -4,7 +4,7 @@ import math
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from .locators import BasePageLocator
+from .locators import BasePageLocators
 
 class BasePage():
     def __init__(self, browser, url, timeout=10):
@@ -51,8 +51,18 @@ class BasePage():
         return False
 
     def go_to_login_page_browser(self):
-        login_link = self.browser.find_element(*BasePageLocator.LOGIN_LINK)
+        login_link = self.browser.find_element(*BasePageLocators.LOGIN_LINK)
         login_link.click()
 
     def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocator.LOGIN_LINK), "Login link is not present"
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not present"
+
+    def go_to_basket_page(self, timeout=4):
+        basket_link = WebDriverWait(self.browser, timeout).until(EC.element_to_be_clickable((BasePageLocators.BASKET_LINK)))
+        basket_link.click()
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
+
+
